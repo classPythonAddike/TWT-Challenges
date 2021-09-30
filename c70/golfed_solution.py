@@ -1,0 +1,1 @@
+for i in[i:=input]*int(i()):k=(k:="".join([f"{([chr(6*(e>25)+e+65)for e in range(52)]+[*'0123456789+/']).index(j):06b}"for j in i().strip("=")]))[:(len(k)//8)*8];print(*[chr(int(k[j:j+8],2))for j in range(0,len(k),8)],sep="")
