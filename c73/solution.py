@@ -1,31 +1,75 @@
-from typing import List
+def distance_to_lobby(row, pos, lobby_dir, row_length):
+	return abs(
+		0 if lobby_dir in "RL" else {"U": abs(1 - row), "D": 2 - row}[lobby_dir]
+	) + (
+		min(row_length - pos - 1, pos) if lobby_dir in "UD" else {"R": row_length - pos - 1, "L": pos}[lobby_dir]
+	)
 
-def distance_to_lobby(row_len, row, column, lobby_pos):
-	if lobby_pos == "R":
-		return row_len - column
-	if lobby_pos == "L":
-		return int(column)
-	if lobby_pos == "U" and row == 0 or lobby_pos == "D" and row == 1:
-		return min(row_len - column, column)
+def distance_to_trash(trash_row, trash_pos, tek_row, tek_pos, row_length):
+	return abs(
+		trash_row - tek_row
+	) + [
+		abs(trash_pos - tek_pos),
+		min(
+			trash_pos + tek_pos,
+			(2 * row_length) - trash_pos - tek_pos - 2
+		)
+	][abs(trash_row - tek_row)]
+
+def s(lobby_dir, row1, row2):
+
+	tekgar_row, tekgar_pos = 2, 0
+	d_to_lobby, d_to_trash = {}, {}
+
+	if "2" in row1:
+		tekgar_row = 1
+		tekgar_pos = row1.index("2")
 	else:
-		return 1 + min(row_len - column, column)
+		tekgar_pos = row2.index("2")
 
-def solution(num_houses: int, lobby: str, row_1: List[int], row_2: List[int]) -> int:
+	r1_trash_dist = {
+		i: distance_to_lobby(1, i, lobby_dir, len(row1))
+		for i in range(len(row1)) if row1[i] == "1"
+	}
 
-	distances = {}
-	# {"row pos": "distance_from_tekgar_to_trash distance_from_trash_to_lobby"}
+	r2_trash_dist = {
+		i: distance_to_lobby(2, i, lobby_dir, len(row2))
+		for i in range(len(row2)) if row2[i] == "1"
+	}
 
-	for i in range(len(row_1)):
-		distances[f"0 {i}"] = distance_to_lobby(num_houses, lobby, 0, int(i + 1))
+	r1_tek_dist = {
+		i: distance_to_trash(1, i, tekgar_row, tekgar_pos, len(row1))
+		for i in range(len(row1)) if row1[i] == "1"
+	}
 
-	print(row_1, "\n" + str(row_2))
-	print(distances)
+	r2_tek_dist = {
+		i: distance_to_trash(2, i, tekgar_row, tekgar_pos, len(row2))
+		for i in range(len(row2)) if row2[i] == "1"
+	}
 
-	return 0
+	for i in range(2):
+		for pos in range(len(row1)):
+			if [row1, row2][i][pos] == "1":
+				d_to_lobby[f"{i + 1} {pos}"] = [r1_tek_dist, r2_tek_dist][i][pos] + \
+					[r1_trash_dist, r2_trash_dist][i][pos]
 
-solution(
-	5,
-	"R",
-	[1, 0, 0, 2, 1],
-	[1, 0, 1, 0, 1]
-)
+	for i in range(2):
+		for pos in range(len(row1)):
+			if [row1, row2][i][pos] == "1":
+				d_to_trash[f"{i + 1} {pos}"] = [r1_tek_dist, r2_tek_dist][i][pos]
+
+	min_lobby_distance, min_trash_distance = [*d_to_lobby.values()][0], [*d_to_trash.values()][0]
+
+	for i in d_to_lobby:
+		if d_to_lobby[i] < min_lobby_distance:
+			min_lobby_distance = d_to_lobby[i]
+			min_trash_distance = d_to_trash[i]
+		elif d_to_lobby[i] == min_lobby_distance:
+			if d_to_trash[i] < min_trash_distance:
+				min_trash_distance = d_to_trash[i]
+
+	print(min_trash_distance)
+
+for i in range(int(input())):
+	_, l, r, b = [*map(input, "0000")]
+	s(l, r, b)
