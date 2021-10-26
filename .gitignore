@@ -3,3 +3,4 @@ test_*.py
 tester.py
 *.json
 temp_*
+*.gz
