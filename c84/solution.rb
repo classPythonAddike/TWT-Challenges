@@ -1,0 +1,1 @@
+gets;puts$<.map{|s|s.tr"0-9",""}
