@@ -4,3 +4,4 @@ tester.py
 *.json
 temp_*
 *.gz
+write.*
