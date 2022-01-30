@@ -1,7 +1,18 @@
+
+# Tester stuff
 test_*.py
-*/__pycache__/
 tester.py
 *.json
 temp_*
 *.gz
+*.txt
+
+# Shorten solutions by stripping characters
 write.*
+
+# Python Stuff
+*/__pycache__/
+
+# Go Stuff
+*.prof
+*/main
