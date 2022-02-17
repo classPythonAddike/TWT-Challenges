@@ -15,4 +15,5 @@ write.*
 
 # Go Stuff
 *.prof
+*/*/main
 */main
