@@ -1,5 +1,6 @@
 # Challenge 93: Traffic Lights
 **Difficulty: 6/10** (USACO Silver)
+
 In the city of Tekalovania, there are *N* traffic lights (each labeled 1...N) along one major road. Unfortunately, a recent earthquake damaged several of those traffic lights...
 Tekgar, the mayor would like **K** _consecutive_ working traffic lights for the moment, at any position on the road, but he wants to spend as little money as possible. Find the minimum number of traffic lights that needs to be fixed in order to accomplish the mayor's wish.
 
