@@ -47,8 +47,13 @@ func main() {
             out.WriteString("BAD INPUT\n")
             continue
         } else if n == 0 {
-            out.WriteString("2 1\n")
-            continue
+            if s == 2 {
+                out.WriteString("2 1\n")
+                continue
+            } else {
+                out.WriteString("BAD INPUT\n")
+                continue
+            }
         }
 
         D := ((2 * s - 1) * (2 * s - 1)) - 8 * n + 8 * s

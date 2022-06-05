@@ -8,8 +8,11 @@ for i in range(int(input())):
     if n < 0 or n > (s * (s + 1)) // 2:
         buf += "BAD INPUT\n"
         continue
-    if n == 0:
+    if n == 0 and s == 2:
         buf += "2 1\n"
+        continue
+    elif n == 0:
+        buf += "BAD INPUT\n"
         continue
 
     D = ((2 * s - 1) ** 2) - 8 * n + 8 * s
