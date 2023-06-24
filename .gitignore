@@ -17,3 +17,6 @@ write.*
 *.prof
 */*/main
 */main
+
+# C++ Stuff
+*/a.out
