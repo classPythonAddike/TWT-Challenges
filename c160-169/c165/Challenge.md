@@ -1,6 +1,6 @@
 # Challenge 165: Snowball Evolution
-### Difficulty: 5/10
-### Labels: Graph Theory, Sets
+#### Difficulty: 5/10
+#### Labels: Graph Theory, Sets
 
 SnowballSH recently acquired the ability to travel to the future. In the year 3023, he discovers that the ordinary-looking objects, snowballs, have now transformed into living creatures and have evolved over the past 100 years! Similar to animals, snowballs now possess various traits based on an evolutionary tree.
 
