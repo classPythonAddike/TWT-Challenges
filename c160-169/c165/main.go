@@ -42,6 +42,7 @@ func solve(snowballs [][]string) {
 			}
 		}
 	}
+
 	stdout.WriteString("YES\n")
 }
 
